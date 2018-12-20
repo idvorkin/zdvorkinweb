@@ -12,9 +12,11 @@ You were in a company but the CEO made some bad decisions and everything went do
 [[easy mode]]
 [[hard mode]]
 
+
 <<nobr>>
 <<set $_dollars_to_win to 40>>
 <<set $_total_dollars to random(10,25)>>
+<<set $_total_energy to 3>>
 <</nobr>>
 
 :: easy mode
@@ -36,21 +38,34 @@ Hi, My name is Bill I will give you many choses to become rich,poor or avrege wi
 
 :: the bench
 
-You have $_total_dollars dollars. You're in a park. There is a bench. Say sleep to sleep on the bench, say beg to try and beg.
+You have $_total_dollars dollars, and $_total_energy energy. You'll need $_dollars_to_win dollars to win the game.
+
+You're in a park. There is a bench. You can:
 
 <<nobr>>
 <<if $_total_dollars gt $_dollars_to_win>>
-Congrats you [[winned]]!
+    Congrats you [[winned]]!
 <<else>>
-You'll need $_dollars_to_win dollars to win the game - start begging!
+    [[beg]]
+    [[sleep]]
+    [[pray]]
 <</if>>
 <</nobr>>
-[[beg]]
-[[sleep]]
-[[pray]]
 
 :: pray
-You pray, but nothing happened.
+You pray ...
+<<nobr>>
+<<set $event to random(100) >>
+<<if $event lt 10>>
+God gets mad, and you lose all your money.
+<<set $_total_dollars to 0>>
+<<elseif $event eq 20>>
+God smiles, and you double your money!
+<<set $_total_dollars to $_total_dollars * 2>>
+<<else>>
+Nothing happens.
+<</if>>
+<</nobr>>
 
 [[go back|the bench]]
 
@@ -62,39 +77,44 @@ You fall asleep on the bench. It's not very comfortable, but you don't have much
 
 <<if $event eq 0>>
 The police came to your bench and hit you on the head
-<<set $hours_asleep to $hours_asleep + 1>>
+<<set $_total_energy to $_total_energy + 1>>
 <</if>>
 
 <<if $event eq 1>>
 An angry dog came and barked all night. You got no sleep.
-<<set $hours_asleep to 1>>
+<<set $_total_energy to 1>>
 <</if>>
 
 <<if $event eq 2>>
 The deathtsar comes out of orbit and blows you to bits.
-<<set $hours_asleep to 0>>
+<<set $_total_energy to 0>>
 <</if>>
 
 <<if $event eq 3>>
 You got lucky, and got a good night of sleep
-<<set $hours_asleep to 8>>
+<<set $_total_energy to 8>>
 <</if>>
 <</nobr>>
 
-You got a total of $hours_asleep hours of sleep.
+You got a total of $_total_energy hours of sleep.
 [[go back|the bench]].
 
 
 :: beg
 <<nobr>>
-<<set $_dollars to random(1,5)>>
-<<set $_total_dollars to $_total_dollars + $_dollars>>
+<<if $_total_energy lte 1>>
+    You don't have energy to beg. Maybe you should get more sleep
+<<else>>
+    <<set $_total_energy to $_total_energy - 1>>
+    <<set $_dollars to random(1,5)>>
+    <<set $_total_dollars to $_total_dollars + $_dollars>>
+    Five people walk past you, you ask them for food or money. You get $_dollars dollars, which means you have $_total_dollars dollars all together.
+<</if>>
 <</nobr>>
-Five people walk past you, you ask them for food or money. You get $_dollars dollars, which means you have $_total_dollars dollars all together.
 
 [[Go back |the bench]]
 
 
 :: winned
-Hooray - you're a winner! You're no longer homeless
+Hooray - you're a winner! You're no longer homeless. Live your happy life, or try again by pressing restart.
 
