@@ -4,8 +4,7 @@ zoom:1
 
 
 :: StoryTitle
-Homeless Survival :(
-
+Homeless Survival
 
 :: Start
 You were in a company but the CEO made some bad decisions and everything went down hill. You are now homeless, please select easy mode or hard mode.
@@ -22,7 +21,6 @@ You were in a company but the CEO made some bad decisions and everything went do
 Are you new?
 
 [[Yes|tutorial]]
-
 [[No|the bench]]
 
 
@@ -32,10 +30,9 @@ this mode is still in the makeing :)
 
 
 :: tutorial
-Hi, My name is Bill I will give you many choses to become rich,poor or avrege with lifes wealth. There are multiple endings, Please know that this is in early acses, A new update/game macanic will be at the starting place.
+Hi, My name is Bill I will give you many choses to become rich,poor or avrege with lifes wealth. There are multiple endings, Please know that this is in early access, new updates will be coming soon.
 
 [[begin|the bench]]
-
 
 :: the bench
 
@@ -50,7 +47,12 @@ You'll need $_dollars_to_win dollars to win the game - start begging!
 <</nobr>>
 [[beg]]
 [[sleep]]
+[[pray]]
 
+:: pray
+You pray, but nothing happened.
+
+[[go back|the bench]]
 
 :: sleep
 You fall asleep on the bench. It's not very comfortable, but you don't have much of a choice.
