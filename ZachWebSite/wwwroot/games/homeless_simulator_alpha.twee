@@ -1,0 +1,98 @@
+:: StorySettings
+ifid:e81cdbd2-cbd7-43fb-b9f8-87bc8650eedc
+zoom:1
+
+
+:: StoryTitle
+Homeless Survival :(
+
+
+:: Start
+You were in a company but the CEO made some bad decisions and everything went down hill. You are now homeless, please select easy mode or hard mode.
+
+[[easy mode]]
+[[hard mode]]
+
+<<nobr>>
+<<set $_dollars_to_win to 40>>
+<<set $_total_dollars to random(10,25)>>
+<</nobr>>
+
+:: easy mode
+Are you new?
+
+[[Yes|tutorial]]
+
+[[No|the bench]]
+
+
+:: hard mode
+this mode is still in the makeing :)
+[[easy mode]]
+
+
+:: tutorial
+Hi, My name is Bill I will give you many choses to become rich,poor or avrege with lifes wealth. There are multiple endings, Please know that this is in early acses, A new update/game macanic will be at the starting place.
+
+[[begin|the bench]]
+
+
+:: the bench
+
+You have $_total_dollars dollars. You're in a park. There is a bench. Say sleep to sleep on the bench, say beg to try and beg.
+
+<<nobr>>
+<<if $_total_dollars gt $_dollars_to_win>>
+Congrats you [[winned]]!
+<<else>>
+You'll need $_dollars_to_win dollars to win the game - start begging!
+<</if>>
+<</nobr>>
+[[beg]]
+[[sleep]]
+
+
+:: sleep
+You fall asleep on the bench. It's not very comfortable, but you don't have much of a choice.
+
+<<nobr>>
+<<set $event to random(3) >>
+
+<<if $event eq 0>>
+The police came to your bench and hit you on the head
+<<set $hours_asleep to $hours_asleep + 1>>
+<</if>>
+
+<<if $event eq 1>>
+An angry dog came and barked all night. You got no sleep.
+<<set $hours_asleep to 1>>
+<</if>>
+
+<<if $event eq 2>>
+The deathtsar comes out of orbit and blows you to bits.
+<<set $hours_asleep to 0>>
+<</if>>
+
+<<if $event eq 3>>
+You got lucky, and got a good night of sleep
+<<set $hours_asleep to 8>>
+<</if>>
+<</nobr>>
+
+You got a total of $hours_asleep hours of sleep.
+[[go back|the bench]].
+
+
+:: beg
+<<nobr>>
+<<set $_dollars to random(1,5)>>
+<<set $_total_dollars to $_total_dollars + $_dollars>>
+<</nobr>>
+Five people walk past you, you ask them for food or money. You get $_dollars dollars, which means you have $_total_dollars dollars all together.
+
+[[Go back |the bench]]
+
+
+:: winned
+Hooray - you're a winner! You're no longer homeless
+
