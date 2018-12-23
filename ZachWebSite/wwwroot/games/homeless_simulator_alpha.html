@@ -102,20 +102,42 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<div id="store-area" hidden><tw-storydata name="Homeless Survival" startnode="3" creator="Tweego" creator-version="1.3.0" ifid="E81CDBD2-CBD7-43FB-B9F8-87BC8650EEDC" zoom="1" format="SugarCube" format-version="2.27.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100">&lt;&lt;set $_dollars_to_win to 40&gt;&gt;
-&lt;&lt;set $_total_dollars to random(10,25)&gt;&gt;
-&lt;&lt;set $_total_energy to 3&gt;&gt;
-&lt;&lt;set $_debug to 0&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageHeader" tags="" position="225,100">You have $_total_dollars dollars, and $_total_energy energy. You&#39;ll need $_dollars_to_win dollars to win the game. [[Cheat|p_debug]]
-----</tw-passagedata><tw-passagedata pid="3" name="Start" tags="" position="350,100">You were in a company but the CEO made some bad decisions and everything went down hill. You are now homeless, please select easy mode or hard mode.
+	<div id="store-area" hidden><tw-storydata name="Homeless Survival" startnode="4" creator="Tweego" creator-version="1.3.0" ifid="E81CDBD2-CBD7-43FB-B9F8-87BC8650EEDC" zoom="1" format="SugarCube" format-version="2.27.0" options="debug" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100">&lt;&lt;set $_dollars_to_win = 40&gt;&gt;
+&lt;&lt;set $_total_dollars = random(10,25)&gt;&gt;
+&lt;&lt;set $_total_energy = 3&gt;&gt;
+&lt;&lt;set $_pray_probability_nothing_happens = 20&gt;&gt;
+&lt;&lt;set $_pray_probability_angry = 10 &gt;&gt;
+&lt;&lt;set $_pray_probability_double_money =  10 &gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageHeader" tags="" position="225,100">&lt;&lt;nobr&gt;&gt;
+/*
+    Secret mode will leave variables as strings, so force convert them to integers.
+*/
+&lt;&lt;script&gt;&gt;
+let vars =  State.variables;
+console.log(vars);
+for (var v in vars) {
+    /* If variable is a number, convert it to a number*/
+    let value =  vars[v];
+
+    if (!isNaN(Number(value))) {
+        vars[v] = Number(value)
+    }
+
+}
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;
+You have $_total_dollars dollars, and $_total_energy energy. You&#39;ll need $_dollars_to_win dollars to win the game.
+----</tw-passagedata><tw-passagedata pid="3" name="PassageFooter" tags="" position="350,100">----
+Copyright Zach Games St[[u|p_debug]]dios
+----</tw-passagedata><tw-passagedata pid="4" name="Start" tags="" position="475,100">You were in a company but the CEO made some bad decisions and everything went down hill. You are now homeless, please select easy mode or hard mode.
 
 [[easy mode]]
-[[hard mode]]</tw-passagedata><tw-passagedata pid="4" name="easy mode" tags="" position="475,100">Are you new?
+[[hard mode]]</tw-passagedata><tw-passagedata pid="5" name="easy mode" tags="" position="600,100">Are you new?
 
 [[Yes|tutorial]]
-[[No|the bench]]</tw-passagedata><tw-passagedata pid="5" name="hard mode" tags="" position="600,100">this mode is still in the makeing :)
-[[easy mode]]</tw-passagedata><tw-passagedata pid="6" name="tutorial" tags="" position="725,100">Hi, My name is Bill I will give you many choses to become rich,poor or avrege with lifes wealth. There are multiple endings, Please know that this is in early access, new updates will be coming soon.
+[[No|the bench]]</tw-passagedata><tw-passagedata pid="6" name="hard mode" tags="" position="725,100">this mode is still in the makeing :)
+[[easy mode]]</tw-passagedata><tw-passagedata pid="7" name="tutorial" tags="" position="850,100">Hi, My name is Bill I will give you many choses to become rich,poor or avrege with lifes wealth. There are multiple endings, Please know that this is in early access, new updates will be coming soon.
 
-[[begin|the bench]]</tw-passagedata><tw-passagedata pid="7" name="the bench" tags="" position="850,100">You&#39;re in a park. There is a bench. You can:
+[[begin|the bench]]</tw-passagedata><tw-passagedata pid="8" name="the bench" tags="" position="975,100">You&#39;re in a park. There is a bench. You can:
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $_total_dollars gt $_dollars_to_win&gt;&gt;
@@ -125,13 +147,14 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
     [[sleep]]
     [[pray]]
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="pray" tags="" position="975,100">You pray ...
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="pray" tags="" position="1100,100">You pray ...
 &lt;&lt;nobr&gt;&gt;
-&lt;&lt;set $event to random(100) &gt;&gt;
-&lt;&lt;if $event lt 10&gt;&gt;
+&lt;&lt;set _total = ($_pray_probability_double_money + $_pray_probability_angry + $_pray_probability_nothing_happens)&gt;&gt;
+&lt;&lt;set _event = random(_total) &gt;&gt;
+&lt;&lt;if _event lt $_pray_probability_angry&gt;&gt;
 God gets mad, and you lose all your money.
 &lt;&lt;set $_total_dollars to 0&gt;&gt;
-&lt;&lt;elseif $event lt 20&gt;&gt;
+&lt;&lt;elseif _event lt ($_pray_probability_angry + $_pray_probability_double_money)&gt;&gt;
 God smiles, and you double your money!
 &lt;&lt;set $_total_dollars to $_total_dollars * 2&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -139,7 +162,7 @@ Nothing happens.
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
-&lt;&lt;return &quot;go back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="sleep" tags="" position="1100,100">You fall asleep on the bench. It&#39;s not very comfortable, but you don&#39;t have much of a choice.
+&lt;&lt;return &quot;go back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="sleep" tags="" position="1225,100">You fall asleep on the bench. It&#39;s not very comfortable, but you don&#39;t have much of a choice.
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;set $event to random(3) &gt;&gt;
@@ -166,7 +189,7 @@ You got lucky, and got a good night of sleep
 &lt;&lt;/nobr&gt;&gt;
 
 You got a total of $_total_energy hours of sleep.
-&lt;&lt;return &quot;go back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="beg" tags="" position="1225,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;return &quot;go back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="beg" tags="" position="100,225">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;if $_total_energy lte 1&gt;&gt;
     You don&#39;t have energy to beg. Maybe you should get more sleep
 &lt;&lt;else&gt;&gt;
@@ -177,7 +200,7 @@ You got a total of $_total_energy hours of sleep.
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;
 
-&lt;&lt;return &quot;go back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="winned" tags="" position="100,225">Hooray - you&#39;re a winner! You&#39;re no longer homeless. Live your happy life, or try again by pressing restart.</tw-passagedata><tw-passagedata pid="12" name="p_debug" tags="" position="225,225">&lt;&lt;script&gt;&gt;
+&lt;&lt;return &quot;go back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="winned" tags="" position="225,225">Hooray - you&#39;re a winner! You&#39;re no longer homeless. Live your happy life, or try again by pressing restart.</tw-passagedata><tw-passagedata pid="13" name="p_debug" tags="" position="350,225">&lt;&lt;script&gt;&gt;
 let vars =  State.variables;
 console.log(vars);
 for (var v in vars) {

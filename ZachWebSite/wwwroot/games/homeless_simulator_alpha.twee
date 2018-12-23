@@ -12,12 +12,30 @@ zoom:1
 <<set $_pray_probability_double_money =  10 >>
 
 :: PassageHeader
+<<nobr>>
+/*
+    Secret mode will leave variables as strings, so force convert them to integers.
+*/
+<<script>>
+let vars =  State.variables;
+console.log(vars);
+for (var v in vars) {
+    /* If variable is a number, convert it to a number*/
+    let value =  vars[v];
+
+    if (!isNaN(Number(value))) {
+        vars[v] = Number(value)
+    }
+
+}
+<</script>>
+<</nobr>>
 You have $_total_dollars dollars, and $_total_energy energy. You'll need $_dollars_to_win dollars to win the game.
 ----
 
 :: PassageFooter
 ----
-Copyright Zach Games Studios [[Secret Mode|p_debug]]
+Copyright Zach Games St[[u|p_debug]]dios
 ----
 :: StoryTitle
 Homeless Survival
