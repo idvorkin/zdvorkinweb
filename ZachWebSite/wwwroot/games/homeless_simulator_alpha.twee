@@ -7,9 +7,10 @@ zoom:1
 <<set $_dollars_to_win to 40>>
 <<set $_total_dollars to random(10,25)>>
 <<set $_total_energy to 3>>
+<<set $_debug to 0>>
 
 :: PassageHeader
-You have $_total_dollars dollars, and $_total_energy energy. You'll need $_dollars_to_win dollars to win the game.
+You have $_total_dollars dollars, and $_total_energy energy. You'll need $_dollars_to_win dollars to win the game. [[Cheat|p_debug]]
 ----
 
 :: StoryTitle
@@ -60,7 +61,7 @@ You pray ...
 <<if $event lt 10>>
 God gets mad, and you lose all your money.
 <<set $_total_dollars to 0>>
-<<elseif $event eq 20>>
+<<elseif $event lt 20>>
 God smiles, and you double your money!
 <<set $_total_dollars to $_total_dollars * 2>>
 <<else>>
@@ -118,3 +119,16 @@ You got a total of $_total_energy hours of sleep.
 :: winned
 Hooray - you're a winner! You're no longer homeless. Live your happy life, or try again by pressing restart.
 
+:: p_debug
+
+<<script>>
+let vars =  State.variables;
+console.log(vars);
+for (var v in vars) {
+    console.log(v + " -> " + vars[v]);
+    let tb = `${v} <<textbox "$${v}" $${v}>>\n`
+    console.log(tb)
+    $(output).wiki(tb)
+}
+<</script>>
+<<return "Back to game">>
