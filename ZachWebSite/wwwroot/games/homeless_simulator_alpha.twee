@@ -3,6 +3,15 @@ ifid:e81cdbd2-cbd7-43fb-b9f8-87bc8650eedc
 zoom:1
 
 
+:: StoryInit
+<<set $_dollars_to_win to 40>>
+<<set $_total_dollars to random(10,25)>>
+<<set $_total_energy to 3>>
+
+:: PassageHeader
+You have $_total_dollars dollars, and $_total_energy energy. You'll need $_dollars_to_win dollars to win the game.
+----
+
 :: StoryTitle
 Homeless Survival
 
@@ -11,13 +20,6 @@ You were in a company but the CEO made some bad decisions and everything went do
 
 [[easy mode]]
 [[hard mode]]
-
-
-<<nobr>>
-<<set $_dollars_to_win to 40>>
-<<set $_total_dollars to random(10,25)>>
-<<set $_total_energy to 3>>
-<</nobr>>
 
 :: easy mode
 Are you new?
@@ -38,7 +40,6 @@ Hi, My name is Bill I will give you many choses to become rich,poor or avrege wi
 
 :: the bench
 
-You have $_total_dollars dollars, and $_total_energy energy. You'll need $_dollars_to_win dollars to win the game.
 
 You're in a park. There is a bench. You can:
 
@@ -113,7 +114,6 @@ You got a total of $_total_energy hours of sleep.
 <</nobr>>
 
 <<return "go back">>
-
 
 :: winned
 Hooray - you're a winner! You're no longer homeless. Live your happy life, or try again by pressing restart.
