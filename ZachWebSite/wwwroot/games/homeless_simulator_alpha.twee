@@ -67,7 +67,7 @@ Nothing happens.
 <</if>>
 <</nobr>>
 
-<<back "go back">>
+<<return "go back">>
 
 :: sleep
 You fall asleep on the bench. It's not very comfortable, but you don't have much of a choice.
@@ -97,7 +97,7 @@ You got lucky, and got a good night of sleep
 <</nobr>>
 
 You got a total of $_total_energy hours of sleep.
-<<back "go back">>
+<<return "go back">>
 
 
 :: beg
@@ -112,7 +112,7 @@ You got a total of $_total_energy hours of sleep.
 <</if>>
 <</nobr>>
 
-<<back "go back">>
+<<return "go back">>
 
 
 :: winned
