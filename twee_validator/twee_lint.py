@@ -59,15 +59,15 @@ def extractPassages(lines: List[str]) -> List[Passage]:
         matches = re.findall(":: (.*)[{$]", line)
         return matches[0].strip() if len(matches) == 1 else None
 
-    def parseLink(line):
+    def parseLinks(line):
         # TODO: can have multiple links on same page.
         if not "|" in line:
-            matches = re.findall("\[\[(.*)\]\]", line)
-            return matches[0] if len(matches) == 1 else None
+            matches = re.findall("\[\[([A-Za-z _]+)\]\]", line)
+            return matches if len(matches) > 0 else []
 
         tail = l.split("|")[1]
-        matches = re.findall("(.*)\]\]", tail)
-        return matches[0] if len(matches) == 1 else None
+        matches = re.findall("([A-Za-z _]*)\]\]", tail)
+        return matches if len(matches) == 1 else []
 
     currentPassage = None
     passages: List[
@@ -86,8 +86,8 @@ def extractPassages(lines: List[str]) -> List[Passage]:
             currentPassage.found_passage = True
             continue
 
-        link = parseLink(l)
-        if link:
+        links = parseLinks(l)
+        for link in links:
             # check if passage in all_passages
             # else add it.
             assert currentPassage
