@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/ZachWebSite/bin/Debug/netcoreapp2.1/ZachWebSite.dll",
+            "program": "${workspaceFolder}/ZachWebSite/bin/Debug/netcoreapp3.0/ZachWebSite.dll",
             "args": [],
             "cwd": "${workspaceFolder}/ZachWebSite",
             "stopAtEntry": false,
