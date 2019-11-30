@@ -6,7 +6,7 @@ Hosted @  https://zdvorkin.azurewebsites.net/
 
 #### The team
 
-* Igor Dvorkin - Engineering/Weirdo
+* Igor Dvorkin - Engineering/Weirdo/Tiny Tim/um.....
 * Zach Dvorkin - CEO
 
 
