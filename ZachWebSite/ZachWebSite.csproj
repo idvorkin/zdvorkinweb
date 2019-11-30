@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>44f960e6-d5c0-4923-9056-01c3e5e41741</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="westwind.aspnetcore.markdown" Version="3.3.0" />
+  </ItemGroup>
 </Project>
