@@ -7,6 +7,6 @@ Hosted @  https://zdvorkin.azurewebsites.net/
 #### The team
 
 * Igor Dvorkin - Engineering
-* Zach Dvorkin - The Big Kahuna
+* Zach Dvorkin - The Big Banana
 
 
